@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simon Game</title>
+
+    <!-- Font CDN -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+
+    <!-- Home css -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="container text-center py-3 mt-5">
+      <h1 class="game-title">Press A to start</h1>
+    </div>
+
+    <div class="container d-flex align-items-center flex-column">
+      <div class="d-lg-flex justify-content-center pt-lg-5 mt-3  dice-container ">
+        <div class="col-6 rounded-5 box-pad green my-sm-5 my-lg-0 me-5"></div>
+        <div class="col-6 rounded-5 box-pad red"></div>
+      </div>
+
+      <div class="d-lg-flex flex-lg-row justify-content-center py-5 dice-container">
+        <div class="col-6 rounded-5 box-pad yellow my-sm-5 my-lg-0 me-5"></div>
+        <div class="col-6 rounded-5 box-pad blue"></div>
+      </div>
+    </div>
+
+    <!-- JS -->
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- JQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <!-- Home JS -->
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+.game-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    color: #FEF2BF;
+    filter: drop-shadow(1px 3px 1px black);
+    font-weight: bold;
+}
+
+body {
+    background-color: #011F3F;
+}
+
+.box-pad {
+    width: 200px;
+    height: 200px;
+    border: solid 10px black;
+}
+
+.green {
+    background-color: green;
+}
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: yellow;
+}
+.blue {
+    background-color: blue;
+}
