@@ -1,30 +1,40 @@
 .game-title {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 3rem;
-    color: #FEF2BF;
-    filter: drop-shadow(1px 3px 1px black);
-    font-weight: bold;
+  font-family: "Press Start 2P", cursive;
+  font-size: 3rem;
+  color: #fef2bf;
+  filter: drop-shadow(1px 3px 1px black);
+  font-weight: bold;
 }
 
 body {
-    background-color: #011F3F;
+  background-color: #011f3f;
 }
 
 .box-pad {
-    width: 200px;
-    height: 200px;
-    border: solid 10px black;
+  width: 200px;
+  height: 200px;
+  border: solid 10px black;
 }
 
 .green {
-    background-color: green;
+  background-color: green;
 }
 .red {
-    background-color: red;
+  background-color: red;
 }
 .yellow {
-    background-color: yellow;
+  background-color: yellow;
 }
 .blue {
-    background-color: blue;
+  background-color: blue;
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
+
+.game-over {
+  background-color: red;
+  opacity: 0.8;
 }
