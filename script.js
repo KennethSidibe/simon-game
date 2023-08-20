@@ -3,6 +3,7 @@
 var computerStepsIndex = 0;
 var level = 0;
 var playerStepsIndex = 0;
+var maxLevel = 0;
 
 var redSound = new Audio("./sounds/red.mp3");
 var yellowSound = new Audio("./sounds/yellow.mp3");
