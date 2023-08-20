@@ -2,7 +2,7 @@
 var computerStepsIndex = 0;
 var level = 0;
 var playerStepsIndex = 0;
-var maxLevel = 2;
+var maxLevel = 10;
 
 var redSound = new Audio("./sounds/red.mp3");
 var yellowSound = new Audio("./sounds/yellow.mp3");
@@ -13,6 +13,8 @@ var victorySound = new Audio("./sounds/victory.wav");
 
 var randNumber = 0;
 var gameOn = false;
+
+// setButtonSize();
 
 var colorPattern = {
   0: "green",
@@ -45,6 +47,20 @@ var rgbPattern = {
 var sequence = Array(100)
     .fill(null)
     .map((item) => generateRandColor());
+
+function setButtonSize() {
+
+    var pixelWidthExpected = 200;
+    var pixelHeightExpected = 200;
+    var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    var boxWidthInVW = 100 * (200/vw);
+    var boxHeightInVH = 100 * (200/vh);
+
+    $('.box-pad').css('width', ""+boxWidthInVW +"vw ") = boxWidthInVW;
+    $('.box-pad').css('height', ""+boxHeightInVH +"vh") = boxWidthInVW;
+
+}
 
 
 startGame();

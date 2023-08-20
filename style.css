@@ -6,6 +6,10 @@
   font-weight: bold;
 }
 
+.ken-tag {
+    font-family: "Press Start 2P", cursive;
+}
+
 body {
   background-color: #011f3f;
 }
@@ -42,4 +46,13 @@ body {
 .victory {
     background-color: green;
     opacity: 0.8;
+}
+
+
+@media (max-width:500px) {
+    .box-pad {
+        width: 35vw;
+        height: 35vw;
+        border: solid 7px black;   
+    }
 }
