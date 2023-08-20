@@ -38,3 +38,8 @@ body {
   background-color: red;
   opacity: 0.8;
 }
+
+.victory {
+    background-color: green;
+    opacity: 0.8;
+}

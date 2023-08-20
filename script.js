@@ -1,25 +1,24 @@
 
-
 var computerStepsIndex = 0;
 var level = 0;
 var playerStepsIndex = 0;
-var maxLevel = 0;
+var maxLevel = 2;
 
 var redSound = new Audio("./sounds/red.mp3");
 var yellowSound = new Audio("./sounds/yellow.mp3");
 var greenSound = new Audio("./sounds/green.mp3");
 var blueSound = new Audio("./sounds/blue.mp3");
 var gameOverSound = new Audio("./sounds/wrong.mp3");
+var victorySound = new Audio("./sounds/victory.wav");
 
 var randNumber = 0;
-var randString = '';
 var gameOn = false;
 
 var colorPattern = {
-  0: ["green", greenSound],
-  1: ["red", redSound],
-  2: ["yellow", yellowSound],
-  3: ["blue", blueSound],
+  0: "green",
+  1: "red",
+  2: "yellow",
+  3: "blue",
 };
 
 var soundPattern = {
@@ -53,7 +52,7 @@ generateRandColor();
 
 function generateRandColor() {
   randNumber = Math.floor(Math.random() * 4);
-  return colorPattern[randNumber][0];
+  return colorPattern[randNumber];
   return 1;
 }
 
@@ -108,11 +107,35 @@ function startGame() {
 
 }
 
+function victory() {
+    $('h1').text('Congratulations on Finishing The Simon Game ! 🎉 Press A to Replay');
+    victorySound.play();
+    playVictoryAnimation();
+    gameOn = false;
+    computerStepsIndex = 0;
+    level = 0;
+    playerStepsIndex = 0;
+    resetGamePattern();
+    
+}
+
+function hasPlayerFinishedGame() {
+
+    console.log(level);
+
+    if(level >= maxLevel) {
+        return true;
+    }
+    
+    return false;
+}
+
 function gameOver() {
     gameOn = false;
     computerStepsIndex = 0;
     level = 0;
     playerStepsIndex = 0;
+    resetGamePattern();
 }
 
 function resetGamePattern() {
@@ -124,12 +147,16 @@ function resetGamePattern() {
 
 function continueGame() {
     if(isLevelFinished()) {
-        level++;
-        computerStepsIndex++;
-        playerStepsIndex = 0;
-        computerStepsIndex = 0;
-        $('h1').text('Level ' + (level + 1));
-        showButtonToBeClickedNow();
+        if(hasPlayerFinishedGame()) {
+            victory();
+        } else {
+            level++;
+            computerStepsIndex++;
+            playerStepsIndex = 0;
+            computerStepsIndex = 0;
+            $('h1').text('Level ' + (level + 1));
+            showButtonToBeClickedNow();
+        }
     } else {
         playerStepsIndex++;
         computerStepsIndex++;
@@ -153,11 +180,19 @@ function gameBrainDecides(boxRGBValue) {
     }
 }
 
+function playCorrespondingSound(rgbValue) {
+    var colorTriggered = rgbPattern[rgbValue];
+    var audioToPlay = soundPattern[colorTriggered];
+
+    audioToPlay.play();
+}
+
 function makeButtonsListens() {
     $(".box-pad").on("click", function () {
       var btnPressed = $(this);
       var rgbValue = btnPressed.css("background-color");
       
+      playCorrespondingSound(rgbValue);
       animatePlayerBtnPressed(btnPressed);
       
       gameBrainDecides(rgbValue);
@@ -173,6 +208,86 @@ function hasPlayerLost(colorClicked) {
     }
 
     return false;
+
+}
+
+// VIEWS METHODS
+
+function playVictoryAnimation() {
+    flashButtons();
+
+    flashBackgroundColor();
+}
+
+
+function flashButtons(){
+
+    increment = 0;
+    timeOut = 800;
+
+    for (let i = 0; i < 2; i++) {
+        // green
+        setTimeout(() => {
+            $('.green').addClass('pressed'); 
+        }, 0+increment);
+        
+        // green
+        setTimeout(() => {
+            $('.green').removeClass('pressed'); 
+        }, 100+increment);
+
+        
+        // red
+        setTimeout(() => {
+            $('.red').addClass('pressed');
+        }, 200+increment);
+
+        // red
+        setTimeout(() => {
+            $('.red').removeClass('pressed'); 
+        }, 300+increment);
+
+
+        // yellow
+        setTimeout(() => {
+            $('.yellow').addClass('pressed');
+        }, 400+increment);
+
+        // yellow
+        setTimeout(() => {
+            $('.yellow').removeClass('pressed');
+        }, 500+increment);
+
+        // blue
+        setTimeout(() => {
+            $('.blue').addClass('pressed');
+        }, 600+increment);
+
+        // blue
+        setTimeout(() => {
+            $('.blue').removeClass('pressed');
+        }, 700+increment);
+        increment +=timeOut;
+    }
+
+    
+}
+
+function flashBackgroundColor() {
+
+    for (let i = 0; i < 5; i++) {
+
+        timeOut = 100 + (i * 200);
+
+        setTimeout(() => {
+            $('body').addClass('victory');
+        }, timeOut);
+
+        setTimeout(() => {
+            $('body').removeClass('victory');
+        }, timeOut+100);
+        
+    }
 
 }
 
@@ -201,7 +316,6 @@ function animatePlayerBtnPressed(btnPressed) {
     }, 100);
 
 }
-
 
 
 function animateComputerBtnToBeClicked(color) {
