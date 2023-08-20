@@ -14,8 +14,6 @@ var victorySound = new Audio("./sounds/victory.wav");
 var randNumber = 0;
 var gameOn = false;
 
-// setButtonSize();
-
 var colorPattern = {
   0: "green",
   1: "red",
@@ -101,24 +99,43 @@ function correctDoublesInColorSequence() {
     }
 }
 
-function startGame() {
-    correctDoublesInColorSequence();
+function animateGameTitle() {
 
-    $(document).on("keydown", function (event) {
-      if (!gameOn) {
-        gameOn = true;
-        if (event.key == "a") {
-            $('h1').text("Level " + (level +1 )); 
-            showButtonToBeClickedNow();
-            makeButtonsListens();
-        }
-      }
-    });
-  
-    $(document).on("keyup", function (event) {
-      if (event.key == "a" || event.key == 'A') {
-        gameOn = false;
-      }
+    gameTitle = $('.game-title');
+
+    gameTitle.addClass('title-pressed rounded-5').fadeOut(100).fadeIn(100);
+
+    setTimeout(() => {
+    gameTitle.removeClass('title-pressed rounded-5');
+    gameTitle.text('Level ' + (level+ 1));
+    }, 100);
+
+}
+
+function animateDownKenTag() {
+    $('.ken-tag').stop().animate({"opacity": "0.1"}, "slow");
+}
+function animateUpKenTag() {
+    $('.ken-tag').stop().animate({"opacity": "1"}, "slow");
+}
+
+function startGame() {
+
+    correctDoublesInColorSequence();
+    
+    $('.game-title').on("click", function (event) {
+        
+        animateDownKenTag();
+        animateGameTitle();
+
+        setTimeout(() => {
+            if (!gameOn) {
+                gameOn = true;
+                    $('h1').text("Level " + (level + 1)); 
+                    showButtonToBeClickedNow();
+                    makeButtonsListens();
+              }
+        }, 500);
     });
 
 }
@@ -126,6 +143,7 @@ function startGame() {
 function victory() {
     $('h1').text('Congratulations on Finishing The Simon Game ! 🎉 Press A to Replay');
     victorySound.play();
+    animateUpKenTag();
     playVictoryAnimation();
     gameOn = false;
     computerStepsIndex = 0;
@@ -309,6 +327,8 @@ function flashBackgroundColor() {
 
 function animateGameOver() {
 
+    animateUpKenTag();
+
     $('body').addClass('game-over');
     gameOverSound.play();
 
@@ -316,7 +336,7 @@ function animateGameOver() {
         $('body').removeClass('game-over');
     }, 100);
 
-    $('h1').text('Game Over, Press A to Restart');
+    $('h1').text('Game Over, Press Me to Restart');
 
 }
 
